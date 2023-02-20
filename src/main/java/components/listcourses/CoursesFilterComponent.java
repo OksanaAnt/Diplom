@@ -1,12 +1,10 @@
-package components;
+package components.listcourses;
 
-import data.CategoryData;
-import data.menu.SubMenuCategoryCoursesItemData;
+import components.AbsBaseComponent;
+import data.courses.CategoryData;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import javax.security.auth.login.CredentialException;
 
 public class CoursesFilterComponent extends AbsBaseComponent {
 
@@ -15,7 +13,6 @@ public class CoursesFilterComponent extends AbsBaseComponent {
     }
 
     private String courseCategoryCheckTestingLocator = "//div[./label[text()='Тестирование']]//input";
-    private String courseCategoryCheckEventsLocator = "//div[./label[text()='Календарь мероприятий']]//input";
 
     public CoursesFilterComponent coursesFilterState(CategoryData categoryData, boolean state) {
         String locator = String.format(courseCategoryCheckTestingLocator, categoryData.getName());

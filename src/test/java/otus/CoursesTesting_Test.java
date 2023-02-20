@@ -1,10 +1,10 @@
 package otus;
 
-import components.CoursesFilterComponent;
+import components.listcourses.CoursesFilterComponent;
 import components.HeaderMenuComponent;
 import components.listcourses.InformationOfCoursesComponent;
-import data.CategoryData;
-import data.CoursesData;
+import data.courses.CategoryData;
+import data.courses.CoursesData;
 import data.menu.HeaderMenuItemData;
 import data.menu.SubMenuCategoryCoursesItemData;
 import exceptions.BrowserNotSupportException;
@@ -26,6 +26,7 @@ public class CoursesTesting_Test {
     public static void setUpDriver() {
         WebDriverManager.chromedriver().setup();
     }
+
     // создаем веб-драйвер перед каждым тестом, потому что когда создаем объект веб-дайвер, стартует веб-драйвер, сессия и браузер привязывается к опред сессии браузера (на случай многопоточность)
     @BeforeEach
     public void init() throws BrowserNotSupportException {
@@ -35,7 +36,7 @@ public class CoursesTesting_Test {
 
     @AfterEach
     public void close() {
-        if(driver != null) {
+        if (driver != null) {
             driver.close();
             driver.quit();
         }

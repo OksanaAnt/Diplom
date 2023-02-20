@@ -1,8 +1,10 @@
 package otus;
 
-import components.CoursesFilterComponent;
 import components.HeaderMenuComponent;
-import data.CategoryData;
+import components.events.EventsType;
+import data.events.EventTypeTextData;
+import data.events.EventTypesData;
+import data.events.EventsNewOrOldData;
 import data.menu.HeaderMenuItemData;
 import data.menu.SubMenuCategoryCoursesItemData;
 import exceptions.BrowserNotSupportException;
@@ -15,7 +17,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 import pages.events.EventsPage;
-import waiters.StandartWaiter;
 
 public class Events_Test {
 
@@ -35,29 +36,64 @@ public class Events_Test {
 
     @AfterEach
     public void close() {
-        if(driver != null) {
+        if (driver != null) {
             driver.close();
             driver.quit();
         }
     }
 
     @Test
-    public void EventsTesting() {
-        new MainPage(driver).open();
+    public void EventsDateTesting() {
+        MainPage mainPage = new MainPage(driver);
+        EventsPage eventsPage = new EventsPage(driver);
+        HeaderMenuComponent headerMenuComponent = new HeaderMenuComponent(driver);
 
+        mainPage
+                .open();
         components.popups.HeaderSubMenuPopup headerSubMenuPopup = new components.popups.HeaderSubMenuPopup(driver);
         headerSubMenuPopup.popupShouldNotBeVisible(HeaderMenuItemData.LEARNING);
 
-        new HeaderMenuComponent(driver)
+        headerMenuComponent
                 .moveCursorToHeaderItem(HeaderMenuItemData.LEARNING);
         headerSubMenuPopup.popupShouldBeVisible(HeaderMenuItemData.LEARNING);
         headerSubMenuPopup.clickSubMenuItemByNameEvents(SubMenuCategoryCoursesItemData.EVENTS);
 
-        new EventsPage(driver)
-                .scrollLastElements();
-        new EventsPage(driver)
-                .countEvents();
+        eventsPage
+                .clickEventNewOrOld(EventsNewOrOldData.EVENTSOLD);
+//        eventsPage
+//                .scrollLastElements();
+//        eventsPage
+//                .countEvents(EventTypeTextData.TEXTVEBINAR);
+        eventsPage
+                .checkEventDate();
+    }
 
+    @Test
+    public void EventsTypeTesting() {
+
+        MainPage mainPage = new MainPage(driver);
+        EventsPage eventsPage = new EventsPage(driver);
+        EventsType eventsType = new EventsType(driver);
+        HeaderMenuComponent headerMenuComponent = new HeaderMenuComponent(driver);
+
+        mainPage.open();
+        components.popups.HeaderSubMenuPopup headerSubMenuPopup = new components.popups.HeaderSubMenuPopup(driver);
+        headerSubMenuPopup.popupShouldNotBeVisible(HeaderMenuItemData.LEARNING);
+
+        headerMenuComponent
+                .moveCursorToHeaderItem(HeaderMenuItemData.LEARNING);
+        headerSubMenuPopup.popupShouldBeVisible(HeaderMenuItemData.LEARNING);
+        headerSubMenuPopup.clickSubMenuItemByNameEvents(SubMenuCategoryCoursesItemData.EVENTS);
+
+        eventsPage
+                .clickEventNewOrOld(EventsNewOrOldData.EVENTSNEW);
+
+        eventsType
+                .clickEventType();
+        eventsType
+                .selectEventType(EventTypesData.DOD);
+        eventsType
+                .checkEventTypeText(EventTypeTextData.TEXTDOD);
     }
 
 }

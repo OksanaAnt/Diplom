@@ -1,14 +1,15 @@
-package data;
+package data.courses;
 
-public enum CoursesData {
-    QALEAD ("qa-lead");
+public enum CategoryData {
+    TESTING("Testing");
+
     private String name;
-    CoursesData (String name) {
+
+    CategoryData (String name) {
         this.name = name;
     }
 
     public String getName() {
         return name;
     }
-
 }
