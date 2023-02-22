@@ -41,7 +41,7 @@ public class EventsPage extends AbsBasePage {
 
 
     public void scrollLastElements() {
-        for (int i = 0; i <= 100; i++) {
+        for (int i = 0; i <= 200; i++) {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             WebElement element = driver.findElement(By.xpath(lastEventsLocator));
             js.executeScript("arguments[0].scrollIntoView(true);", element);
@@ -67,6 +67,7 @@ public class EventsPage extends AbsBasePage {
 
                     dateStr = dateStr.replaceAll("[а-я]+", String.format("%d", DateData.getDateData(monthStr).getNumber()));
                     dateStr += " " + LocalDate.now().getYear();
+                    dateStr = dateStr.charAt(0) + dateStr.substring(1).toLowerCase();
 
                     if (dateStr.equals("Сейчас в эфире")) {
                         return LocalDateTime.now();

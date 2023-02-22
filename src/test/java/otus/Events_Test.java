@@ -59,11 +59,11 @@ public class Events_Test {
         headerSubMenuPopup.clickSubMenuItemByNameEvents(SubMenuCategoryCoursesItemData.EVENTS);
 
         eventsPage
-                .clickEventNewOrOld(EventsNewOrOldData.EVENTSOLD);
-//        eventsPage
-//                .scrollLastElements();
-//        eventsPage
-//                .countEvents(EventTypeTextData.TEXTVEBINAR);
+                .clickEventNewOrOld(EventsNewOrOldData.EVENTSNEW);
+        eventsPage
+                .scrollLastElements();
+        eventsPage
+                .countEvents(EventTypeTextData.TEXTVEBINAR);
         eventsPage
                 .checkEventsDate();
     }
