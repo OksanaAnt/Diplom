@@ -1,6 +1,6 @@
 package pages.events;
 
-import data.DateData;
+import data.events.DateData;
 import data.events.EventTypeTextData;
 import data.events.EventsNewOrOldData;
 import org.junit.jupiter.api.Assertions;
@@ -8,9 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pages.AbsBasePage;
-import waiters.StandartWaiter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,15 +16,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 
 public class EventsPage extends AbsBasePage {
     public EventsPage(WebDriver driver) {
         super(driver, "events/near/");
     }
-
-    protected StandartWaiter standartWaiter;
 
     String lastEventsLocator = "//div[@class='dod_new-event__type']/ancestor::div[contains(@class,'list')]/a[last()]";
 
@@ -62,14 +57,13 @@ public class EventsPage extends AbsBasePage {
         return this;
     }
 
-    public void checkEventDate() {
+    public void checkEventsDate() {
         List<WebElement> dateElements = driver.findElements(By.cssSelector(dateSelector));
-        //      LocalDateTime now = LocalDateTime.now();
 
         Assertions.assertTrue(dateElements.stream()
                 .map(WebElement::getText)
                 .map((String dateStr) -> {
-                    String monthStr = dateStr.split("\\s+")[1];
+                    String monthStr = dateStr.split(" ")[1];
 
                     dateStr = dateStr.replaceAll("[а-я]+", String.format("%d", DateData.getDateData(monthStr).getNumber()));
                     dateStr += " " + LocalDate.now().getYear();

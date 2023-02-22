@@ -65,7 +65,7 @@ public class Events_Test {
 //        eventsPage
 //                .countEvents(EventTypeTextData.TEXTVEBINAR);
         eventsPage
-                .checkEventDate();
+                .checkEventsDate();
     }
 
     @Test
