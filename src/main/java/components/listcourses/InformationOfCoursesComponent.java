@@ -12,7 +12,7 @@ public class InformationOfCoursesComponent extends AbsBaseComponent {
         super(driver);
     }
 
-    private String nameOfCoursesLocator = "//div[@id='__next']//section//h1[text() = '%s']";
+    private String nameOfCoursesLocator = "//div[@id='__next']//section//h1";
 
     private String descriptionOfCoursesLocator = "//div[@id='__next']//section//h1[contains(text(),\"\")]/following-sibling::div[1]";
 
